@@ -3,6 +3,7 @@ package com.test.one.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -46,13 +47,12 @@ public class PersonService {
 
     @Cacheable("Person")
     public Person getPerson(int id) {
-        System.out.println("cache not find,use source,id :" + id);
+//        System.out.println("cache not find,use source,id :" + id);
 
         return personMap.get(id);
     }
 
     @CachePut(value = "Person", key = "#id")
-    @CacheEvict(cacheNames ="tancehuancun",allEntries = true)
     public Person updatePerson(int id, String name,int age) {
         System.out.println("update person,id " + id);
         Person person = personMap.get(id);
@@ -65,7 +65,6 @@ public class PersonService {
     @Caching(
             evict = {
                     @CacheEvict("Person"),
-                    @CacheEvict(cacheNames = "tancehuancun", allEntries = true)
             }
     )
     public void deletePerson(int id) {
@@ -74,7 +73,6 @@ public class PersonService {
     }
 
     @CachePut(value = "Person", key = "#id")
-    @CacheEvict(cacheNames = "tancehuancun", allEntries = true)
     public Person addPerson(int id, String name,int age){
         System.out.println("add person");
         Person person = new Person();
