@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -15,11 +16,6 @@ import com.test.one.service.SchoolService;
 
 import junit.framework.Assert;
 
-/**
- * @author 罗立东 rod
- * @time 15/8/31
- */
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class CacheTest extends AbstractJUnit4SpringContextTests {
     
 	@Autowired
@@ -86,4 +82,5 @@ public class CacheTest extends AbstractJUnit4SpringContextTests {
         if (!isfind)
             Assert.fail();
     }
+    
 }
