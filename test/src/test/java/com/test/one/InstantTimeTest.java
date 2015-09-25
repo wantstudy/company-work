@@ -14,26 +14,33 @@ import java.time.temporal.IsoFields;
 import java.util.Date;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
+@RunWith(JUnit4.class)
 public class InstantTimeTest {
+	
 	@Test
-	public  void testClock() throws InterruptedException {
+	public void testClock() throws InterruptedException{
 		//时钟提供给我们用于访问某个特定 时区的 瞬时时间、日期 和 时间的。  
 		Clock c1 = Clock.systemUTC(); //系统默认UTC时钟（当前瞬时时间 System.currentTimeMillis()）  
-		System.out.println(c1.millis()); //每次调用将返回当前瞬时时间（UTC）  
+		System.out.println("c1.millis()"+c1.millis()); //每次调用将返回当前瞬时时间（UTC）  
 		Clock c2 = Clock.systemDefaultZone(); //系统默认时区时钟（当前瞬时时间）  
+		System.out.println(c2.millis());
 		Clock c31 = Clock.system(ZoneId.of("Europe/Paris")); //巴黎时区  
-		System.out.println(c31.millis()); //每次调用将返回当前瞬时时间（UTC）  
+		System.out.println("c31.millis()"+c31.millis()); //每次调用将返回当前瞬时时间（UTC）  
 		Clock c32 = Clock.system(ZoneId.of("Asia/Shanghai"));//上海时区  
-		System.out.println(c32.millis());//每次调用将返回当前瞬时时间（UTC）  
+		System.out.println("c32.millis()"+c32.millis());//每次调用将返回当前瞬时时间（UTC）  
 		Clock c4 = Clock.fixed(Instant.now(), ZoneId.of("Asia/Shanghai"));//固定上海时区时钟  
-		System.out.println(c4.millis());
 		Thread.sleep(1000);
-		System.out.println(c4.millis()); //不变 即时钟时钟在那一个点不动  
+		System.out.println("c4.millis()"+c4.millis());
+		System.out.println("c4.millis()"+c4.millis()); //不变 即时钟时钟在那一个点不动  
 		Clock c5 = Clock.offset(c1, Duration.ofSeconds(2)); //相对于系统默认时钟两秒的时钟  
-		System.out.println(c1.millis());
-		System.out.println(c5.millis());
+		System.out.println("c1.millis()"+c1.millis());
+		System.out.println("c5.millis()"+c5.millis());
 	}
+	
+	
 	@Test
 	public  void testInstant() {
 		//瞬时时间 相当于以前的System.currentTimeMillis()  
@@ -137,16 +144,15 @@ public class InstantTimeTest {
 		System.out.println(instant);
 		System.out.println(date);
 	}
-
+	
 	@Test
-	public  void main(String[] args) throws InterruptedException {
-		testClock();
-		testInstant();
-		testLocalDateTime();
-		testZonedDateTime();
-		testDuration();
-		testChronology();
-		testNewOldDateConversion();
+	public void testFormatDate(){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime in = LocalDateTime.now();
+		System.out.println(formatter.format(in));
+		
+//		LocalDateTime d6 = LocalDateTime.parse("2013/12/31 23:59:59", formatter);
+//		System.out.println(formatter.format(d6));
 	}
 
 }

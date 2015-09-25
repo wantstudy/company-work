@@ -32,7 +32,7 @@ public class Java8Tester {
 	@Test
 	public void testLambda(){
 		List<String> list = getList();
-		List<String> list2 = new ArrayList();
+		List<String> list2 = new ArrayList<>();
 		list.forEach((name) -> list2.add(name));
 		list2.forEach(System.out::println);
 	}
