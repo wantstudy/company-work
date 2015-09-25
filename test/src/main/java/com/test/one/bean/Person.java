@@ -9,8 +9,21 @@ public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int id;
     private String personName;
-
-    public int getId() {
+    
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
+    public Person(String personName) {
+		super();
+		this.personName = personName;
+	}
+    
+	public Person(int id, int personAge) {
+		super();
+		this.id = id;
+		this.personAge = personAge;
+	}
+	public int getId() {
         return id;
     }
 
@@ -57,4 +70,8 @@ public class Person implements Serializable{
         result = 31 * result + personAge;
         return result;
     }
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", personName=" + personName + ", personAge=" + personAge + "]";
+	}
 }
