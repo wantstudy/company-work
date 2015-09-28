@@ -49,5 +49,12 @@ public class TypeAnnotionTest {
 	    @Authority(role="Manager")
 	    public void doSomeThing(){ }
 	}
+	
+	@Test
+	public void testStringReverse(){
+		String str = "12345";
+		StringBuffer sb = new StringBuffer(str);
+		System.out.println(sb.reverse().toString());
+	}
 
 }
